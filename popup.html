@@ -33,12 +33,37 @@
       padding: 6px;
       border-radius: 4px;
     }
+    #trial-info {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #ccc;
+    }
+    #upgrade {
+      background: #ff9900;
+      color: black;
+      font-weight: bold;
+      padding: 8px;
+      border-radius: 4px;
+      text-align: center;
+      margin: 12px 0;
+      cursor: pointer;
+    }
+    #reset {
+      font-size: 11px;
+      color: #aaa;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 6px;
+    }
   </style>
 </head>
 <body>
   <button id="start" class="btn">▶️ Start Reposting</button>
   <button id="stop"  class="btn" disabled>⏹️ Stop Reposting</button>
   <div id="status">Status: idle</div>
+  <div id="trial-info"></div>
+  <div id="upgrade" style="display: none;">Upgrade to Unlimited</div>
+  <div id="reset">Reset Trial (Dev Use)</div>
 
   <script src="extpay.js"></script>
   <script src="popup.js"></script>
