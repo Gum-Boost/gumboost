@@ -1,4 +1,3 @@
-// popup.js
 const extpay = ExtPay('gumboost');
 extpay.start();
 
