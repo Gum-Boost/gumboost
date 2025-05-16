@@ -9,14 +9,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return;
       }
 
-      chrome.storage.local.get(['repostCount'], (data) => {
-        const count = data.repostCount || 0;
-        if (count < 10) {
-          chrome.storage.local.set({ repostCount: count + 1 }, () => {
+      const userId = user.id;
+      const trialKey = `trial_used_${userId}`;
+
+      chrome.storage.sync.get([trialKey], (data) => {
+        if (data[trialKey]) {
+          sendResponse({ allowed: false, paid: false });
+        } else {
+          chrome.storage.sync.set({ [trialKey]: true }, () => {
             sendResponse({ allowed: true, paid: false });
           });
-        } else {
-          sendResponse({ allowed: false, paid: false });
         }
       });
     });
