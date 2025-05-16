@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Gumtree Reposter",
+  "description": "Automate reposting of expired Gumtree ads",
+  "version": "1.0.0",
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.gumtree.com.au/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.gumtree.com.au/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
