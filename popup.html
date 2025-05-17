@@ -1,71 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>GumBoost</title>
   <style>
     body {
-      width: 260px;
-      padding: 16px;
-      background: #2b2b2b;
-      color: #eee;
       font-family: Arial, sans-serif;
-    }
-    .btn {
-      width: 100%;
+      background: #2d1e35;
+      color: white;
       padding: 10px;
+      margin: 0;
+      width: 280px;
+    }
+
+    #gumboost-popup {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      border: 2px solid #39b54a;
+      background-color: #3c2c44;
+      border-radius: 10px;
+      padding: 10px;
+      z-index: 999999;
+    }
+
+    .btn {
+      display: block;
       margin: 8px 0;
-      background: #3CB371;
+      padding: 10px;
       border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 14px;
+      border-radius: 8px;
+      background-color: #39b54a;
+      color: white;
+      font-weight: bold;
       cursor: pointer;
     }
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: default;
+
+    .btn:hover {
+      background-color: #2e9b3c;
     }
-    #status {
-      margin-top: 12px;
-      font-size: 13px;
-      background: #404040;
-      padding: 6px;
-      border-radius: 4px;
-    }
+
     #trial-info {
       margin-top: 10px;
-      font-size: 13px;
-      color: #ccc;
     }
-    #upgrade {
-      background: #ff9900;
-      color: black;
-      font-weight: bold;
-      padding: 8px;
-      border-radius: 4px;
+
+    #upgrade-banner {
+      background: #ffffff;
+      color: #2d1e35;
+      padding: 6px;
+      border-radius: 6px;
+      margin-top: 10px;
       text-align: center;
-      margin: 12px 0;
+      font-weight: bold;
       cursor: pointer;
     }
-    #reset {
-      font-size: 11px;
-      color: #aaa;
-      text-decoration: underline;
+
+    #upgrade-banner:hover {
+      background: #39b54a;
+      color: white;
+    }
+
+    #toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #39b54a;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 20px;
       cursor: pointer;
-      margin-top: 6px;
+      animation: bounce 2s infinite;
+      z-index: 999999;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    #gumboost-popup .close-btn {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+      color: #aaa;
+    }
+
+    #gumboost-popup .close-btn:hover {
+      color: white;
     }
   </style>
 </head>
 <body>
-  <button id="start" class="btn">▶️ Start Reposting</button>
-  <button id="stop"  class="btn" disabled>⏹️ Stop Reposting</button>
-  <div id="status">Status: idle</div>
-  <div id="trial-info"></div>
-  <div id="upgrade" style="display: none;">Upgrade to Unlimited</div>
-  <div id="reset">Reset Trial (Dev Use)</div>
+  <div id="gumboost-popup" style="display: none;">
+    <div class="close-btn" id="close-popup">×</div>
+    <h3>GumBoost</h3>
+    <button class="btn" id="start">▶ Start Reposting</button>
+    <button class="btn" id="stop" disabled>⏹ Stop Reposting</button>
+    <div id="status">Status: idle</div>
+    <div id="trial-info"></div>
+    <button class="btn" id="reset">Reset Trial (Dev Use)</button>
+    <div id="upgrade-banner" onclick="window.open('https://extensionpay.com/extension/gumboost/choose-plan/monthly-24-99?api_key=YOUR_API_KEY', '_blank')">Upgrade to GumBoost Pro</div>
+  </div>
 
-  <script src="extpay.js"></script>
+  <div id="toggle-btn">Open GumBoost</div>
+
   <script src="popup.js"></script>
 </body>
 </html>
